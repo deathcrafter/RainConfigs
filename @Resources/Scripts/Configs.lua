@@ -72,7 +72,9 @@ function InitiateConfigs() -- type: null
                 if not conf.ini then conf.active=tonumber(SKIN:ReplaceVariables("[&ConfigActive:IsActive("..curr..")]")) end
 
                 if conf.active > 0 then
-                    if (conf.root ~= '') then setActive(conf.root) end
+                    if (conf.root ~= '') then
+                        setActive(conf.root) 
+                    end
                     conf.activeIni=SKIN:ReplaceVariables("[&ConfigActive:ConfigVariantName("..curr..")]")
                 end
 
@@ -85,7 +87,6 @@ function InitiateConfigs() -- type: null
                 conf.open=0
                 table.insert(configArray, conf)
                 if not conf.ini then configList[curr] = table.maxn(configArray) end
-                -- print(curr .. '=' .. (configList[curr] or ''))
             end
             str=curr
         end
@@ -93,12 +94,12 @@ function InitiateConfigs() -- type: null
 end
 
 function setActive(str) -- type: null
-    print('setting active')
     local TEMP = string.split(str, [[\]])
     local STR = ''
     for i=1, #TEMP do
-        local CURR = STR .. STR=='' and TEMP[i] or [[\]]..TEMP[i]
+        local CURR = STR .. (STR=='' and '' or [[\]])..TEMP[i]
         configArray[configList[CURR]].configsActive=true
+        STR = CURR
     end
 end
 

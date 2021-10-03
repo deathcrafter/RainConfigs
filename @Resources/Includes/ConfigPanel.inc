@@ -8,15 +8,15 @@ SolidColor=0,0,0,1
 X=R
 AntiAlias=1
 DynamicVariables=1
-Container=SidebarContainer
+Container=ConfigPanelContainer
 
 [IconStyle]
 Y=(10*#Scale#)R
 H=(20*#Scale#)
 W=(20*#Scale#)
 DynamicVariables=1
-Container=SidebarContainer
-Group=Icons
+Container=ConfigPanelContainer
+Group=Icons | Scroll
 
 [IndicatorStyle]
 X=(12*#Scale#)r
@@ -24,15 +24,15 @@ Y=(10*#Scale#)r
 H=(12*#Scale#)
 W=(12*#Scale#)
 DynamicVariables=1
-Container=SidebarContainer
+Container=ConfigPanelContainer
 
 [Icon]
 Meter=Image
-Container=SidebarContainer
+Container=ConfigPanelContainer
 
 [Icon1]
 Meter=Image
-X=([&RainConfigs:GetProp("(1+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(1+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(1+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(1+[#Index])", 'hidden')]
@@ -52,7 +52,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(1+[#Index])", 'lmb')]
 
 [Icon2]
 Meter=Image
-X=([&RainConfigs:GetProp("(2+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(2+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(2+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(2+[#Index])", 'hidden')]
@@ -72,7 +72,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(2+[#Index])", 'lmb')]
 
 [Icon3]
 Meter=Image
-X=([&RainConfigs:GetProp("(3+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(3+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(3+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(3+[#Index])", 'hidden')]
@@ -92,7 +92,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(3+[#Index])", 'lmb')]
 
 [Icon4]
 Meter=Image
-X=([&RainConfigs:GetProp("(4+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(4+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(4+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(4+[#Index])", 'hidden')]
@@ -112,7 +112,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(4+[#Index])", 'lmb')]
 
 [Icon5]
 Meter=Image
-X=([&RainConfigs:GetProp("(5+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(5+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(5+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(5+[#Index])", 'hidden')]
@@ -132,7 +132,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(5+[#Index])", 'lmb')]
 
 [Icon6]
 Meter=Image
-X=([&RainConfigs:GetProp("(6+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(6+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(6+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(6+[#Index])", 'hidden')]
@@ -152,7 +152,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(6+[#Index])", 'lmb')]
 
 [Icon7]
 Meter=Image
-X=([&RainConfigs:GetProp("(7+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(7+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(7+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(7+[#Index])", 'hidden')]
@@ -172,7 +172,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(7+[#Index])", 'lmb')]
 
 [Icon8]
 Meter=Image
-X=([&RainConfigs:GetProp("(8+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(8+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(8+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(8+[#Index])", 'hidden')]
@@ -192,7 +192,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(8+[#Index])", 'lmb')]
 
 [Icon9]
 Meter=Image
-X=([&RainConfigs:GetProp("(9+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(9+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(9+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(9+[#Index])", 'hidden')]
@@ -212,7 +212,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(9+[#Index])", 'lmb')]
 
 [Icon10]
 Meter=Image
-X=([&RainConfigs:GetProp("(10+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(10+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(10+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(10+[#Index])", 'hidden')]
@@ -232,7 +232,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(10+[#Index])", 'lmb')]
 
 [Icon11]
 Meter=Image
-X=([&RainConfigs:GetProp("(11+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(11+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(11+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(11+[#Index])", 'hidden')]
@@ -252,7 +252,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(11+[#Index])", 'lmb')]
 
 [Icon12]
 Meter=Image
-X=([&RainConfigs:GetProp("(12+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(12+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(12+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(12+[#Index])", 'hidden')]
@@ -272,7 +272,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(12+[#Index])", 'lmb')]
 
 [Icon13]
 Meter=Image
-X=([&RainConfigs:GetProp("(13+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(13+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(13+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(13+[#Index])", 'hidden')]
@@ -292,7 +292,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(13+[#Index])", 'lmb')]
 
 [Icon14]
 Meter=Image
-X=([&RainConfigs:GetProp("(14+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(14+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(14+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(14+[#Index])", 'hidden')]
@@ -312,7 +312,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(14+[#Index])", 'lmb')]
 
 [Icon15]
 Meter=Image
-X=([&RainConfigs:GetProp("(15+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(15+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(15+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(15+[#Index])", 'hidden')]
@@ -332,7 +332,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(15+[#Index])", 'lmb')]
 
 [Icon16]
 Meter=Image
-X=([&RainConfigs:GetProp("(16+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(16+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(16+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(16+[#Index])", 'hidden')]
@@ -352,7 +352,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(16+[#Index])", 'lmb')]
 
 [Icon17]
 Meter=Image
-X=([&RainConfigs:GetProp("(17+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(17+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(17+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(17+[#Index])", 'hidden')]
@@ -372,7 +372,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(17+[#Index])", 'lmb')]
 
 [Icon18]
 Meter=Image
-X=([&RainConfigs:GetProp("(18+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(18+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(18+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(18+[#Index])", 'hidden')]
@@ -392,7 +392,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(18+[#Index])", 'lmb')]
 
 [Icon19]
 Meter=Image
-X=([&RainConfigs:GetProp("(19+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(19+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(19+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(19+[#Index])", 'hidden')]
@@ -412,7 +412,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(19+[#Index])", 'lmb')]
 
 [Icon20]
 Meter=Image
-X=([&RainConfigs:GetProp("(20+[#Index])", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("(20+[#Index])", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("(20+[#Index])", 'image')]
 MeterStyle=IconStyle
 Hidden=[&RainConfigs:GetProp("(20+[#Index])", 'hidden')]
@@ -433,7 +433,7 @@ LeftMouseUpAction=[&RainConfigs:GetProp("(20+[#Index])", 'lmb')]
 [IconDummy]
 Meter=Image
 ImageAlpha=0
-X=([&RainConfigs:GetProp("dummy", 'x')]+[#SidebarScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
+X=([&RainConfigs:GetProp("dummy", 'x')]+[#HorizontalScrollHori]*(250*#Scale#-[&RainConfigs:GetWidth()]))
 ImageName=#@#Icons\[&RainConfigs:GetProp("dummy", 'image')]
 MeterStyle=IconStyle
 Hidden=0

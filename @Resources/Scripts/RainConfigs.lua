@@ -20,9 +20,31 @@ function SetMeters()
     meterArray = {}
     root = ''
     prevRoot = ''
+    local scale = tonumber(SKIN:GetVariable('Scale'))
+    local prevhori = tonumber(SKIN:GetVariable('horizontalScrollHori'))
+    local olddiff = GetWidth() - 250*scale
+    local index = tonumber(SKIN:GetVariable('Index'))
+    oldpos = math.floor(prevhori*olddiff+0.5)
+    SKIN:Bang('!SetVariable', 'horizontalScrollHori', 0)
     widestmet = 0
     setMeters()
+    local newdiff=GetWidth() - 250*scale
+    local horizontalscrollhori = 0
+    if newdiff > olddiff then
+        horizontalscrollhori = oldpos/newdiff
+    elseif newdiff < olddiff then
+        if (oldpos > newdiff) and (newdiff > 0) then
+            horizontalscrollhori = 1
+        elseif (oldpos <= newdiff) and (newdiff > 0) then
+            horizontalscrollhori = oldpos/newdiff
+        end
+    else
+        horizontalscrollhori = prevhori
+    end
+    if (#meterArray) <= index + 20 then SKIN:Bang('!SetVariable', 'Index', #meterArray - 20) end
+    SKIN:Bang('!SetVariable', 'horizontalScrollHori', horizontalscrollhori)
     SKIN:Bang('!UpdateMeasureGroup', 'Scroll')
+    SKIN:Bang('!UpdateMeterGroup', 'Scroll')
     SKIN:Bang('!UpdateMeter', '*')
     SKIN:Bang('!Redraw')
 end

@@ -51,7 +51,7 @@ function setMeters()
             meterArray['dummy']=met 
             SKIN:Bang('!UpdateMeterGroup', 'Dummy')
             met.W = SKIN:GetMeter('Dummy'):GetX() + SKIN:GetMeter('Dummy'):GetW()
-            widestmet = met.W > widestmet and met.W or widestmet
+            widestmet = (met.W > widestmet and met.W or widestmet)
         table.insert(meterArray, met)
         if v.open==1 then
             root=root .. (root~='' and '\\' or '') .. v.name
