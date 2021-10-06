@@ -1,3 +1,5 @@
+print(currentmetadata.preview)
+
 function WriteKeyValue(section, key, value, filePath)
     local file=assert(io.open(filePath, 'r'), 'File path invalid!')
     file:close()

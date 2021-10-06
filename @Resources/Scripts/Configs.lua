@@ -2,23 +2,23 @@ config={}
 
 metaconfig={ 
     __index = {
-        index=0,
-        name='',
-        ini=false,
-        root='',
-        level=0,
-        active=0,
-        iniActive=false,
-        activeIni='', 
-        configsActive=false,
-        open=0
+        index = 0,
+        name = '',
+        ini = false,
+        root = '',
+        level = 0,
+        active = 0,
+        iniActive = false,
+        activeIni = '', 
+        configsActive = false,
+        open = 0
     },
     __call = function (table)
         if not table.ini then
             table.open=1-table.open
             SetMeters()
         else
-            print(table.index)
+            SKIN:Bang('!CommandMeasure', 'Meta', 'configArray['..table.index..']()', SKIN:ReplaceVariables([[#ROOTCONFIG#\MainPanel]]))
         end
     end
 }
@@ -26,7 +26,7 @@ metaconfig={
 setmetatable(config,metaconfig)
 
 function config:new()
-    local conf={}
+    local conf = {}
     setmetatable(conf, metaconfig)
     return conf
 end
@@ -44,22 +44,22 @@ function InitiateConfigs() -- type: null
     -- get the list of all activate-able ini files
     local configs=string.split(SKIN:GetMeasure('ListConfigs'):GetStringValue(), "|")
 
-    local count=1
+    local count = 1
     for k, v in ipairs(configs) do
         local temp=string.split(v, [[\]])
         
 
         -- stores the prev config obtained by joining temp elements
-        local str=''
+        local str = ''
 
         -- now join the file paths from the beginning one by one and check if the config already exists in 'configsArray'
         -- if not, create a new entry
-        for i=1, #temp do
+        for i = 1, #temp do
 
             -- current string/config obtained by joining temp elements
-            local curr = str=='' and temp[i] or str..[[\]]..temp[i]
+            local curr = str == '' and temp[i] or str..[[\]]..temp[i]
 
-            local contains=table.contains(configList, curr, "key")
+            local contains = table.contains(configList, curr, "key")
             
             if not contains then
                 local conf = config:new()
@@ -67,9 +67,9 @@ function InitiateConfigs() -- type: null
                 conf.name=temp[i]
                 if str~='' then conf.root=str end
                 if temp[i]:match('%.ini$') then conf.ini=true end
-                conf.level=i-1
+                conf.level = i-1
                 
-                if not conf.ini then conf.active=tonumber(SKIN:ReplaceVariables("[&ConfigActive:IsActive("..curr..")]")) end
+                if not conf.ini then conf.active = tonumber(SKIN:ReplaceVariables("[&ConfigActive:IsActive("..curr..")]")) end
 
                 if conf.active > 0 then
                     if (conf.root ~= '') then
@@ -82,6 +82,8 @@ function InitiateConfigs() -- type: null
                     if conf.name:lower() == configArray[configList[conf.root]].activeIni:lower() then
                         conf.iniActive = true
                     end
+                    -- conf.metadata = ReadMetaTable(SKIN:GetVariable('SKINSPATH')..conf.root..[[\]]..conf.name)
+                    --print(conf.metadata.author)
                 end
 
                 conf.open=0

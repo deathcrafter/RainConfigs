@@ -1,3 +1,108 @@
+[Variables]
+VBlobMouseOvered=0
+VBlobMouseUp=0
+HBlobMouseOvered=0
+HBlobMouseUp=0
+
+[ConfigPanelBackground]
+Meter=Shape
+Shape=Rectangle 0,0,(265*#Scale#),(600*#Scale#),(10*#Scale#) | StrokeWidth 0 | Fill Color 20,20,20
+DynamicVariables=1
+MouseScrollUpAction=[!SetVariable Index "(Clamp(#Index#-1, 0, Max([&RainConfigs:GetN()]-20, 0)))"][!UpdateMeasure VerticalScrollBlobY][!UpdateMeter *][!Redraw]
+MouseScrollDownAction=[!SetVariable Index "(Clamp(#Index#+1, 0, Max([&RainConfigs:GetN()]-20, 0)))"][!UpdateMeasure VerticalScrollBlobY][!UpdateMeter *][!Redraw]
+MouseActionCursor=0
+Group=ConfigPanel
+
+[ConfigPanelContainer]
+Meter=Shape
+Shape=Rectangle 0,0,(250*#Scale#),(600*#Scale#),(10*#Scale#) | StrokeWidth 0 | Fill LinearGradient Fade
+Fade=180 | 0,0,0,255;0.0 | 0,0,0,255;(240/250) | 0,0,0,0;1.0
+DynamicVariables=1
+Group=ConfigPanel
+
+[VerticalScrollBG]
+Meter=Shape
+X=(4*#Scale#)R
+Y=(5*#Scale#)
+Shape=Rectangle (1*#Scale#),(2*#Scale#),(4*#Scale#),(576*#Scale#),(5*#Scale#) | StrokeWidth 0 | Fill Color 90,90,90
+Hidden=([&RainConfigs:GetN()]<21)
+DynamicVariables=1
+
+[VerticalScrollMouse]
+Measure=Plugin
+Plugin=Mouse
+LeftMouseDragAction=[!SetVariable Index "(Clamp(Floor(($MouseY$-[#VerticalMouseY])/((578*#Scale#*(1-Clamp(20/Max([&RainConfigs:GetN()],1),0,1.0000000001)))/Max(Max([&RainConfigs:GetN()]-20,1), 1))+0.5), 0, Max([&RainConfigs:GetN()]-20, 0)))"][!UpdateMeasure VerticalScroll]
+LeftMouseUpAction=[!SetVariable VBlobMouseUp 0][!CommandMeasure VerticalScrollMouse Stop][!UpdateMeter VerticalScrollBlob][!Redraw]
+RelativeToSkin=1
+RequireDragging=1
+DynamicVariables=1
+
+[VerticalScroll]
+Measure=Calc
+Formula=[#Index]+[&RainConfigs:GetN()]
+DynamicVariables=1
+OnChangeAction=[!UpdateMeasure VerticalScrollBlobY][!UpdateMeter *][!Redraw]
+Group=Scroll
+
+[VerticalScrollBlobY]
+Measure=Calc
+Formula=1*#Scale#+#Index#*((578*(1-Clamp(20/Max([&RainConfigs:GetN()],1),0,1)))/Max(Max([&RainConfigs:GetN()]-20,1), 1))*#Scale#
+DynamicVariables=1
+
+[VerticalScrollBlob]
+Meter=Shape
+X=r
+Y=r
+Shape=Rectangle (1*#Scale#-1*((#VBlobMouseOvered#=1)||(#VBlobMouseUp#=1))*#Scale#),[VerticalScrollBlobY],(4*#Scale#+2*((#VBlobMouseOvered#=1)||(#VBlobMouseUp#=1))*#Scale#),(Clamp(20/Max([&RainConfigs:GetN()],1),0,1)*578*#Scale#),(4*#Scale#) | StrokeWidth 0 | Fill Color FFFFFF
+LeftMouseDownAction=[!SetVariable VBlobMouseUp 1][!SetVariable VerticalMouseY "($MouseY$-[&VerticalScrollBlobY])"][!CommandMeasure VerticalScrollMouse Start]
+MouseOverAction=[!SetVariable VBlobMouseOvered 1][!UpdateMeter #CURRENTSECTION#][!Redraw]
+MouseLeaveAction=[!SetVariable VBlobMouseOvered 0][!UpdateMeter #CURRENTSECTION#][!Redraw]
+Hidden=([&RainConfigs:GetN()]<21)
+DynamicVariables=1
+
+[HorizontalScrollBG]
+Meter=Shape
+X=(5*#Scale#)
+Y=(590*#Scale#)
+Shape=Rectangle (2*#Scale#),(1*#Scale#),(246*#Scale#),(4*#Scale#),(2*#Scale#) | StrokeWidth 0 | Fill Color 90,90,90
+DynamicVariables=1
+Hidden=([&RainConfigs:GetWidth()]<=250)
+
+[HorizontalScrollCalc]
+Measure=Calc
+Formula=(250/[&RainConfigs:GetWidth()])
+DynamicVariables=1
+OnChangeAction=[!UpdateMeasure HorizontalScrollBlobX]
+Group=Scroll
+
+[HorizontalMouse]
+Measure=Plugin
+Plugin=Mouse
+LeftMouseDragAction=[!SetVariable HorizontalScrollHori "(Clamp($MouseX$-[#HorizontalScrollMouse],0,248*#Scale#*(1-[HorizontalScrollCalc]))/(238*#Scale#*(1-[HorizontalScrollCalc])=0?1:(238*#Scale#*(1-[HorizontalScrollCalc]))))"][!UpdateMeasureGroup Scroll][!UpdateMeterGroup Scroll][!Redraw]
+LeftMouseUpAction=[!SetVariable HBlobMouseUp 0][!CommandMeasure HorizontalMouse Stop][!UpdateMeter HorizontalScrollBlob][!Redraw]
+RelativeToSkin=1
+RequireDragging=1
+DynamicVariables=1
+Group=Scroll
+
+[HorizontalScrollBlobX]
+Measure=Calc
+Formula=(248*#Scale#*(1-HorizontalScrollCalc)*[#HorizontalScrollHori]+1*#Scale#)
+DynamicVariables=1
+Group=Scroll
+
+[HorizontalScrollBlob]
+Meter=Shape
+X=r
+Y=r
+Shape=Rectangle [HorizontalScrollBlobX],(1*#Scale#-1*((#HBlobMouseOvered#=1)||(#HBlobMouseUp#=1))*#Scale#), (248*#Scale#*[HorizontalScrollCalc]), (4*#Scale#+2*((#HBlobMouseOvered#=1)||(#HBlobMouseUp#=1))*#Scale#),(4*#Scale#) | StrokeWidth 0 | Fill Color FFFFFF
+LeftMouseDownAction=[!SetVariable HBlobMouseUp 1][!SetVariable HorizontalScrollMouse ($MouseX$-[&HorizontalScrollBlobX])][!UpdateMeasure HorizontalMouse][!CommandMeasure HorizontalMouse Start]
+MouseOverAction=[!SetVariable HBlobMouseOvered 1][!UpdateMeter #CURRENTSECTION#][!Redraw]
+MouseLeaveAction=[!SetVariable HBlobMouseOvered 0][!UpdateMeter #CURRENTSECTION#][!Redraw]
+Group=Scroll
+DynamicVariables=1
+Hidden=([&RainConfigs:GetWidth()]<=250)
+
 [StringStyle]
 FontFace=Cascadia Code
 FontWeight=400
@@ -9,6 +114,7 @@ X=R
 AntiAlias=1
 DynamicVariables=1
 Container=ConfigPanelContainer
+Group=ConfigPanel
 
 [IconStyle]
 Y=(10*#Scale#)R
@@ -16,7 +122,7 @@ H=(20*#Scale#)
 W=(20*#Scale#)
 DynamicVariables=1
 Container=ConfigPanelContainer
-Group=Icons | Scroll
+Group=ConfigPanel | Icons | Scroll
 
 [IndicatorStyle]
 X=(12*#Scale#)r
@@ -25,10 +131,12 @@ H=(12*#Scale#)
 W=(12*#Scale#)
 DynamicVariables=1
 Container=ConfigPanelContainer
+Group=ConfigPanel
 
 [Icon]
 Meter=Image
 Container=ConfigPanelContainer
+Group=ConfigPanel
 
 [Icon1]
 Meter=Image

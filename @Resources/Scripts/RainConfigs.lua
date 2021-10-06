@@ -1,5 +1,6 @@
 activecount = 0
 function Initialize()
+    dofile(SKIN:GetVariable('@')..[[Scripts\Common.lua]])
     dofile(SKIN:GetVariable('@')..[[Scripts\Configs.lua]])
     dofile(SKIN:GetVariable('@')..[[Scripts\Meters.lua]])
     InitiateConfigs()
@@ -41,11 +42,11 @@ function SetMeters()
     else
         horizontalscrollhori = prevhori
     end
-    if (#meterArray) <= index + 20 then SKIN:Bang('!SetVariable', 'Index', #meterArray - 20) end
+    if (#meterArray) <= index + 20 then SKIN:Bang('!SetVariable', 'Index', math.max(#meterArray - 20, 0)) end
     SKIN:Bang('!SetVariable', 'horizontalScrollHori', horizontalscrollhori)
     SKIN:Bang('!UpdateMeasureGroup', 'Scroll')
     SKIN:Bang('!UpdateMeterGroup', 'Scroll')
-    SKIN:Bang('!UpdateMeter', '*')
+    --SKIN:Bang('!UpdateMeterGroup', 'ConfigPanel')
     SKIN:Bang('!Redraw')
 end
 
@@ -109,41 +110,4 @@ function ReadIni(measureName)
     finalTable.SectionOrder=sectionReadOrder
     finalTable.KeyOrder=keyReadOrder
     return finalTable
-end
-
-function string.split(inString, inPattern)
-
-	local outTable = {}
-	local findPattern = '(.-)' .. inPattern
-	local lastEnd = 1
-
-	local currentStart, currentEnd, foundString = inString:find(findPattern, 1)
-
-	while currentStart do
-		if currentStart ~= 1 or foundString ~= '' then
-			table.insert(outTable, foundString)
-		end
-		lastEnd = currentEnd + 1
-		currentStart, currentEnd, foundString = inString:find(findPattern, lastEnd)
-	end
-
-	if lastEnd <= #inString then
-		foundString = inString:sub(lastEnd)
-		table.insert(outTable, foundString)
-	end
-
-	return outTable
-
-end
-
-function table.contains(table, value, type)
-    if type == "key" then
-        for k, _ in pairs(table) do
-            if value == k then return true end
-        end
-    elseif type == "value" then
-        for _, v in pairs(table) do
-            if value == v then return true end
-        end
-    end
 end
