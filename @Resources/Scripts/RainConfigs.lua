@@ -45,8 +45,7 @@ function SetMeters()
     if (#meterArray) <= index + 20 then SKIN:Bang('!SetVariable', 'Index', math.max(#meterArray - 20, 0)) end
     SKIN:Bang('!SetVariable', 'horizontalScrollHori', horizontalscrollhori)
     SKIN:Bang('!UpdateMeasureGroup', 'Scroll')
-    SKIN:Bang('!UpdateMeterGroup', 'Scroll')
-    --SKIN:Bang('!UpdateMeterGroup', 'ConfigPanel')
+    SKIN:Bang('!UpdateMeter', '*')
     SKIN:Bang('!Redraw')
 end
 

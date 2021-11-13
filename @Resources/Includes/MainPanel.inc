@@ -50,21 +50,24 @@ Container=InfoContainer
 DynamicVariables=1
 Group=InfoScroll
 
-[ConfigName]
-Meter=String
-FontSize=20
+[StringStyle]
 FontFace=Cascadia Code
 FontWeight=700
 AntiALias=1
 DynamicVariables=1
 FontColor=FEFEFE
+Container=InfoContainer
+Group=InfoScroll
+ClipString=1
+
+[ConfigName]
+Meter=String
+FontSize=20
 Text=[&Meta:GetData('name')]
 X=(20*#Scale#)r
 Y=(25*#Scale#)r
-Container=InfoContainer
-Group=InfoScroll
 W=(530*#Scale#-[#InfoScroll]*200*#Scale#)
-ClipString=1
+MeterStyle=StringStyle
 
 [RootName]
 Meter=String
@@ -72,7 +75,8 @@ FontSize=10
 FontWeight=400
 X=r
 Y=(10*#Scale#)R
-MeterStyle=ConfigName
+W=(530*#Scale#-[#InfoScroll]*200*#Scale#)
+MeterStyle=StringStyle
 Text=[&Meta:GetData('root')]
 
 [Author]
@@ -81,7 +85,8 @@ FontSize=10
 FontWeight=400
 X=r
 Y=(30*#Scale#)R
-MeterStyle=ConfigName
+MeterStyle=StringStyle
+W=(530*#Scale#+[#InfoScroll]*40*#Scale#)
 Text=Author : [&Meta:GetData('author')]
 
 [Version]
@@ -90,7 +95,8 @@ FontSize=10
 FontWeight=400
 X=r
 Y=(10*#Scale#)R
-MeterStyle=ConfigName
+W=(530*#Scale#+[#InfoScroll]*40*#Scale#)
+MeterStyle=StringStyle
 Text=Version : [&Meta:GetData('version')]
 
 [License]
@@ -99,9 +105,9 @@ FontSize=10
 FontWeight=400
 X=r
 Y=(10*#Scale#)R
-MeterStyle=ConfigName
-Text=License : [&Meta:GetData('license')]
 W=(530*#Scale#+[#InfoScroll]*40*#Scale#)
+MeterStyle=StringStyle
+Text=License : [&Meta:GetData('license')]
 ClipString=1
 
 [InformationHeader]
@@ -110,21 +116,21 @@ FontSize=10
 FontWeight=400
 X=r
 Y=(10*#Scale#)R
-MeterStyle=ConfigName
+MeterStyle=StringStyle
 Text=Information :
 
 [ActualInfo]
 Meter=String
 FontSize=10
 FontWeight=400
-W=(515*#Scale#-[InformationHeader:W])
+W=(530*#Scale#-[InformationHeader:W]+[#InfoScroll]*40*#Scale#)
 H=(4*[Dummy:H])
 X=R
 Y=r
-MeterStyle=ConfigName
+MeterStyle=StringStyle
 Text=[&Meta:GetData('information')]
 ClipString=2
-ClipStringW=(515*#Scale#-[InformationHeader:W])
+ClipStringW=(530*#Scale#-[InformationHeader:W]+[#InfoScroll]*40*#Scale#)
 
 [Dummy]
 Meter=String
@@ -140,7 +146,7 @@ FontColor=0,0,0,0
 Meter=Shape
 X=(680*#Scale#)
 Y=(40*#Scale#)
-Shape=Rectangle 0,0,(200*#Scale#),(40*#Scale#),(5*#Scale#) | StrokeWidth 0 | Fill Color 100,100,100
+Shape=Rectangle 0,0,(200*#Scale#),(40*#Scale#),(5*#Scale#) | StrokeWidth 0 | Fill Color 20,20,20
 
 [Load]
 Meter=Image

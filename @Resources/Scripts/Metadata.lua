@@ -171,7 +171,7 @@ function ReadMetadata(ini)
     local o = metadata:new()
     local keys = {'Author', 'Version', 'License', 'Information', 'Link', 'Preview'}
     for index, key in pairs(keys) do
-        if table.contains(iniTable.KeyOrder['metadata'], key:lower()) then o[key:lower()] = (key == 'Information' and ' ') .. iniTable.INI['metadata'][key:lower()] end
+        if table.contains(iniTable.KeyOrder['metadata'], key:lower()) then o[key:lower()] = (key == 'Information' and ' ' or '') .. iniTable.INI['metadata'][key:lower()] end
     end
     return o
 end
@@ -211,11 +211,28 @@ function ReadIni(measureName)
     return finalTable
 end
 
+------------------------------------------------------
+------------------------------------------------------
+
 function Initialize()
     dofile(SKIN:GetVariable('@')..[[Scripts\Common.lua]])
     InitiateConfigs()
     UpdatePanel()
 end
+
+oldActive = 0
+function Update()
+    local newActive = GetActive()
+    if (newActive ~= oldActive) then
+        oldActive = newActive
+        SKIN:Bang('!UpdateMeasure', 'RainConfigs', SKIN:GetVariable('ROOTCONFIG') .. [[\SidePanel]])
+        SKIN:Bang('!UpdateMeter', 'Load')
+        SKIN:Bang('!Redraw')
+    end
+end
+
+------------------------------------------------------
+------------------------------------------------------
 
 function UpdatePanel()
     SKIN:Bang('!UpdateMeter', '*')
@@ -242,6 +259,17 @@ function GetActive()
         end
     end
     return 0
+end
+
+function Toggle()
+    if currentmetadata.root == "" then return end
+    if GetActive() == 0 then
+        SKIN:Bang('!ActivateConfig', currentmetadata.root, currentmetadata.name)
+    else
+        SKIN:Bang('!DeactivateConfig', currentmetadata.root)
+    end
+    SKIN:Bang('!UpdateMeter', 'Load')
+    SKIN:Bang('!Redraw')
 end
 
 function Edit()
